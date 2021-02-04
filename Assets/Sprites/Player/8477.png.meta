@@ -7,13 +7,13 @@ TextureImporter:
     second: 8477_0
   - first:
       213: -6862099465034961332
-    second: 8477_1
+    second: simonColor3
   - first:
       213: 4480965853961828999
-    second: 8477_2
+    second: simonColor2
   - first:
       213: 2125205454198359958
-    second: 8477_3
+    second: simonColor1
   - first:
       213: -2228282528699331621
     second: 8477_4
@@ -664,7 +664,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 8477_1
+      name: simonColor3
       rect:
         serializedVersion: 2
         x: 326
@@ -685,7 +685,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 8477_2
+      name: simonColor2
       rect:
         serializedVersion: 2
         x: 343
@@ -706,7 +706,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 8477_3
+      name: simonColor1
       rect:
         serializedVersion: 2
         x: 360
