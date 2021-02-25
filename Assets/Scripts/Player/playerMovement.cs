@@ -18,6 +18,17 @@ public class playerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius;
 
+    int _score = 0;
+    public int score
+    {
+        get { return _score; }
+        set
+        {
+            _score = value;
+            Debug.Log("Current Score Is " + _score);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,5 +97,17 @@ public class playerMovement : MonoBehaviour
 
         if (marioSprite.flipX && horizontalInput > 0 || !marioSprite.flipX && horizontalInput < 0)
             marioSprite.flipX = !marioSprite.flipX;
+    }
+
+    public void StartJumpForceChange()
+    {
+        StartCoroutine(JumpForceChange());
+    }
+
+    IEnumerator JumpForceChange()
+    {
+        jumpForce = 500;
+        yield return new WaitForSeconds(10.0f);
+        jumpForce = 300;
     }
 }
