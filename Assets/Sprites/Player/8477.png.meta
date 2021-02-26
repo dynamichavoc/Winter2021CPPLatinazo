@@ -469,7 +469,7 @@ TextureImporter:
     second: 8477_154
   - first:
       213: 5247197348932599088
-    second: 8477_155
+    second: Bottle
   - first:
       213: 3261271386331782991
     second: Axe2
@@ -3898,7 +3898,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 8477_155
+      name: Bottle
       rect:
         serializedVersion: 2
         x: 204

@@ -27,8 +27,22 @@ public class Projectile : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D (Collision2D c) 
+    void OnCollisionEnter2D (Collision2D collision) 
     {
-        Destroy(gameObject);
+        if (collision.gameObject.layer == 0)
+        {
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<EnemyWalker>().isDead();
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "EnemyTurret")
+        {
+            collision.gameObject.GetComponent<EnemyTurret>().isDead();
+            Destroy(gameObject);
+        }
     }
 }

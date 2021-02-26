@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Pickups
+  - Barrier
+  - Enemy
+  - EnemyProjectile
+  - PlayerProjectile
+  - EnemyTurret
   layers:
   - Default
   - TransparentFX

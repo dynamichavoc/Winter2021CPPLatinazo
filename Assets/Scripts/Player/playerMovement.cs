@@ -106,8 +106,8 @@ public class playerMovement : MonoBehaviour
 
     IEnumerator JumpForceChange()
     {
-        jumpForce = 500;
+        jumpForce = 600;
         yield return new WaitForSeconds(10.0f);
-        jumpForce = 300;
+        jumpForce = 450;
     }
 }
