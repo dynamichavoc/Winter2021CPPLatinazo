@@ -7,7 +7,8 @@ public class Pickups : MonoBehaviour
     public enum CollectibleType
     {
         POWERUP,
-        COLLECTIBLE
+        COLLECTIBLE,
+        LIVES
     }
 
     public CollectibleType currentCollectible;
@@ -25,7 +26,7 @@ public class Pickups : MonoBehaviour
                     break;
                 case CollectibleType.COLLECTIBLE:
                     Debug.Log("Collectible");
-                    collision.GetComponent<playerMovement>().score++;
+                    GameManager.instance.score++;
                     Destroy(gameObject);
                     break;
             }

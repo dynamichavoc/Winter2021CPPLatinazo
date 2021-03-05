@@ -12,9 +12,21 @@ public class PlayerCollision : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+    // Update is called once per frame   
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.gameObject.tag == "") ;
+        if (collision.gameObject.tag == "EnemyProjectile")
+        {
+            GameManager.instance.lives--;
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            GameManager.instance.lives--;
+        }
+        if (collision.gameObject.tag == "EnemyTurret")
+        {
+            GameManager.instance.lives--;
+        }
     }
 }
