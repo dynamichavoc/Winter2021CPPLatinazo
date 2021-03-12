@@ -61,42 +61,45 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, isGroundLayer);
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (CanvasManager.GameIsPaused == false)
         {
-            rb.velocity = Vector2.zero;
-            rb.AddForce(Vector2.up * jumpForce);
+            float horizontalInput = Input.GetAxisRaw("Horizontal");
+            float verticalInput = Input.GetAxisRaw("Vertical");
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, isGroundLayer);
+
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                rb.velocity = Vector2.zero;
+                rb.AddForce(Vector2.up * jumpForce);
+            }
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                anim.SetBool("isShooting", true);
+            }
+
+            if (Input.GetButtonUp("Fire1"))
+            {
+                anim.SetBool("isShooting", false);
+            }
+
+            if (Input.GetButtonDown("Jump") && verticalInput > 0)
+            {
+                anim.SetBool("isFlip", true);
+            }
+
+            if (verticalInput == 0)
+            {
+                anim.SetBool("isFlip", false);
+            }
+
+            rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
+            anim.SetFloat("speed", Mathf.Abs(horizontalInput));
+            anim.SetBool("isGrounded", isGrounded);
+
+            if (marioSprite.flipX && horizontalInput > 0 || !marioSprite.flipX && horizontalInput < 0)
+                marioSprite.flipX = !marioSprite.flipX;
         }
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-            anim.SetBool("isShooting", true);
-        }
-
-        if (Input.GetButtonUp("Fire1"))
-        {
-            anim.SetBool("isShooting", false);
-        }
-
-        if (Input.GetButtonDown("Jump") && verticalInput > 0)
-        {
-            anim.SetBool("isFlip", true);
-        }
-
-        if (verticalInput == 0)
-        {
-            anim.SetBool("isFlip", false);
-        }
-
-        rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
-        anim.SetFloat("speed", Mathf.Abs(horizontalInput));
-        anim.SetBool("isGrounded", isGrounded);
-
-        if (marioSprite.flipX && horizontalInput > 0 || !marioSprite.flipX && horizontalInput < 0)
-            marioSprite.flipX = !marioSprite.flipX;
     }
 
     public void StartJumpForceChange()

@@ -28,8 +28,11 @@ public class playerFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-            FireProjectile();
+        if (CanvasManager.GameIsPaused == false)
+        {
+            if (Input.GetButtonDown("Fire1"))
+                FireProjectile();
+        }
     }
 
     void FireProjectile()

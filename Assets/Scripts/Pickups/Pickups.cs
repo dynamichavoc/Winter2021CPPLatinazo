@@ -7,8 +7,7 @@ public class Pickups : MonoBehaviour
     public enum CollectibleType
     {
         POWERUP,
-        COLLECTIBLE,
-        LIVES
+        COLLECTIBLE
     }
 
     public CollectibleType currentCollectible;

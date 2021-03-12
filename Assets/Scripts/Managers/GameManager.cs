@@ -68,8 +68,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        player = GameObject.Find("Player");
-        respawnPoint = GameObject.Find("respawnPoint");
+        if (!player)
+        {
+            player = GameObject.Find("Player");
+            respawnPoint = GameObject.Find("respawnPoint");
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (SceneManager.GetActiveScene().name == "Level")
@@ -92,11 +96,26 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
+            QuitGame();
+        }
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Level");
+    }
+
+    public void QuitGame()
+    {
 #if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
+        EditorApplication.isPlaying = false;
 #else
             Application.Quit();
 #endif
-        }
+    }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("TitleScreen");
     }
 }
