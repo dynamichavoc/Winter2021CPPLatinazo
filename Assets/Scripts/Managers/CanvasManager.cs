@@ -35,6 +35,11 @@ public class CanvasManager : MonoBehaviour
     [Header("Toggles")]
     public Toggle muteToggle;
 
+    [Header("Life Counters")]
+    public GameObject counter1;
+    public GameObject counter2;
+    public GameObject counter3;
+
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +81,32 @@ public class CanvasManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.instance.lives == 0)
+        {
+            counter1.SetActive(false);
+            counter2.SetActive(false);
+            counter3.SetActive(false);
+        }
+        else if (GameManager.instance.lives == 1)
+        {
+            counter1.SetActive(true);
+            counter2.SetActive(false);
+            counter3.SetActive(false);
+        }
+        else if (GameManager.instance.lives == 2)
+        {
+            counter1.SetActive(true);
+            counter2.SetActive(true);
+            counter3.SetActive(false);
+        }
+        else
+        {
+            counter1.SetActive(true);
+            counter2.SetActive(true);
+            counter3.SetActive(true);
+        }
+
+
         if (pauseMenu)
         {
             if (pauseMenu.activeSelf)
