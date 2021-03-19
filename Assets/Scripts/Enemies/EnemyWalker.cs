@@ -10,13 +10,18 @@ public class EnemyWalker : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer sr;
     Animator anim;
+    AudioSource deathAudio;
 
+    public AudioClip deathSound;
     public int health;
     public float speed;
 
     // Start is called before the first frame update
     void Start()
     {
+        deathAudio = gameObject.AddComponent<AudioSource>();
+        deathAudio.clip = deathSound;
+        deathAudio.loop = false;
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -62,6 +67,7 @@ public class EnemyWalker : MonoBehaviour
         {
             anim.SetBool("Death", true);
             rb.velocity = Vector2.zero;
+            deathAudio.Play();
         }
     }
 

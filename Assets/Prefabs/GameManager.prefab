@@ -43,3 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bca54ca87e8f5e46b3b46d4ddcb6cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnSFX: {fileID: 8300000, guid: 2e514b41d048ded40acc1f8e00fd3b5a, type: 3}
+  player: {fileID: 0}
+  respawnPoint: {fileID: 0}
+  maxLives: 3

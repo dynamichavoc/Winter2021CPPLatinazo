@@ -40,10 +40,19 @@ public class CanvasManager : MonoBehaviour
     public GameObject counter2;
     public GameObject counter3;
 
+    AudioSource pauseAudio;
+    public AudioClip pauseSound;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        if (pauseMenu)
+        {
+            pauseAudio = gameObject.AddComponent<AudioSource>();
+            pauseAudio.clip = pauseSound;
+            pauseAudio.loop = false;
+        }
         if (startButton)
         {
             startButton.onClick.AddListener(() => GameManager.instance.StartGame());
@@ -81,29 +90,32 @@ public class CanvasManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.lives == 0)
+        if (counter1 && counter2 && counter3)
         {
-            counter1.SetActive(false);
-            counter2.SetActive(false);
-            counter3.SetActive(false);
-        }
-        else if (GameManager.instance.lives == 1)
-        {
-            counter1.SetActive(true);
-            counter2.SetActive(false);
-            counter3.SetActive(false);
-        }
-        else if (GameManager.instance.lives == 2)
-        {
-            counter1.SetActive(true);
-            counter2.SetActive(true);
-            counter3.SetActive(false);
-        }
-        else
-        {
-            counter1.SetActive(true);
-            counter2.SetActive(true);
-            counter3.SetActive(true);
+            if (GameManager.instance.lives == 0)
+            {
+                counter1.SetActive(false);
+                counter2.SetActive(false);
+                counter3.SetActive(false);
+            }
+            else if (GameManager.instance.lives == 1)
+            {
+                counter1.SetActive(true);
+                counter2.SetActive(false);
+                counter3.SetActive(false);
+            }
+            else if (GameManager.instance.lives == 2)
+            {
+                counter1.SetActive(true);
+                counter2.SetActive(true);
+                counter3.SetActive(false);
+            }
+            else
+            {
+                counter1.SetActive(true);
+                counter2.SetActive(true);
+                counter3.SetActive(true);
+            }
         }
 
 
@@ -118,18 +130,16 @@ public class CanvasManager : MonoBehaviour
                 if (GameIsPaused)
                 {
                     pauseMenu.SetActive(false);
+                    pauseAudio.Play();
                     Time.timeScale = 1f;
-                    //gameAnimator.updateMode = AnimatorUpdateMode.Normal;
                     GameIsPaused = false;
                 }
                 else
                 {
                     pauseMenu.SetActive(true);
+                    pauseAudio.Play();
                     Time.timeScale = 0f;
-                    //gameAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
                     GameIsPaused = true;
-                    
-                    
                 }
             }
         }
@@ -150,6 +160,7 @@ public class CanvasManager : MonoBehaviour
                 volText.text = volSlider.value.ToString();
             }
         }
+
     }
 
     public void ReturnToGame()

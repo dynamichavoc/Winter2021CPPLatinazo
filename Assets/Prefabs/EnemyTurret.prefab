@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01b0a98023a8ac44bcd169e11c9e5e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathSound: {fileID: 8300000, guid: a74ffedc4142e5d4b922b3f04dedf2aa, type: 3}
   projectileSpawnPoint: {fileID: 6532894656051090657}
   projectileSpawnRight: {fileID: 6532894656395665493}
   projectilePrefab: {fileID: 2237142205860812771, guid: c3cb5df0fbd98194c83ad54f1820e757, type: 3}

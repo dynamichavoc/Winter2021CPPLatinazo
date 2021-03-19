@@ -6,12 +6,14 @@ using UnityEngine;
 public class playerFire : MonoBehaviour
 {
     SpriteRenderer marioSprite;
+    AudioSource fireAudioSource;
 
     public Transform spawnPointLeft;
     public Transform spawnPointRight;
 
     public float projectileSpeed;
     public Projectile projectilePrefab;
+    public AudioClip fireSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,20 @@ public class playerFire : MonoBehaviour
         if (CanvasManager.GameIsPaused == false)
         {
             if (Input.GetButtonDown("Fire1"))
+            {
                 FireProjectile();
+                if (!fireAudioSource)
+                {
+                    fireAudioSource = gameObject.AddComponent<AudioSource>();
+                    fireAudioSource.clip = fireSFX;
+                    fireAudioSource.loop = false;
+                    fireAudioSource.Play();
+                }
+                else
+                {
+                    fireAudioSource.Play();
+                }
+            }
         }
     }
 

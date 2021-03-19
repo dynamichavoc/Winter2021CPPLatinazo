@@ -11,6 +11,28 @@ public class Pickups : MonoBehaviour
     }
 
     public CollectibleType currentCollectible;
+    public AudioClip collisionClip;
+    AudioSource pickupAudio;
+    BoxCollider2D trigger;
+
+    private void Start()
+    {
+        trigger = GetComponent<BoxCollider2D>();
+        pickupAudio = GetComponent<AudioSource>();
+        if (pickupAudio)
+        {
+            pickupAudio.loop = false;
+            pickupAudio.clip = collisionClip;
+        }
+    }
+
+    private void Update()
+    {
+        if (!pickupAudio.isPlaying && !trigger.enabled)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -26,7 +48,8 @@ public class Pickups : MonoBehaviour
                 case CollectibleType.COLLECTIBLE:
                     Debug.Log("Collectible");
                     GameManager.instance.score++;
-                    Destroy(gameObject);
+                    pickupAudio.Play();
+                    trigger.enabled = false;
                     break;
             }
         }

@@ -10,6 +10,8 @@ public class playerMovement : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
     SpriteRenderer marioSprite;
+    AudioSource jumpAudioSource;
+
 
     public float speed;
     public int jumpForce;
@@ -17,6 +19,7 @@ public class playerMovement : MonoBehaviour
     public LayerMask isGroundLayer;
     public Transform groundCheck;
     public float groundCheckRadius;
+    public AudioClip jumpSFX;
 
     int _score = 0;
     public int score
@@ -71,6 +74,17 @@ public class playerMovement : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
                 rb.AddForce(Vector2.up * jumpForce);
+                if (!jumpAudioSource)
+                {
+                    jumpAudioSource = gameObject.AddComponent<AudioSource>();
+                    jumpAudioSource.clip = jumpSFX;
+                    jumpAudioSource.loop = false;
+                    jumpAudioSource.Play();
+                }
+                else
+                {
+                    jumpAudioSource.Play();
+                }
             }
 
             if (Input.GetButtonDown("Fire1"))

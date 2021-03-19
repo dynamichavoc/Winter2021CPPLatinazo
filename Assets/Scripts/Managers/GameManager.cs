@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    AudioSource respawnAudio;
+    public AudioClip respawnSFX;
     public GameObject player;
     public GameObject respawnPoint;
 
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
             if (_lives > value)
             {
                 player.transform.position = respawnPoint.transform.position;
+                respawnAudio.Play();
             }
             _lives = value;
             if (_lives > maxLives)
@@ -54,6 +57,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        respawnAudio = gameObject.AddComponent<AudioSource>();
+        respawnAudio.clip = respawnSFX;
+        respawnAudio.loop = false;
         if (instance)
         {
             Destroy(gameObject);

@@ -6,6 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class EnemyTurret : MonoBehaviour
 {
+    AudioSource deathAudio;
+    public AudioClip deathSound;
+
     public Transform projectileSpawnPoint;
     public Transform projectileSpawnRight;
     public Projectile projectilePrefab;
@@ -23,6 +26,9 @@ public class EnemyTurret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        deathAudio = gameObject.AddComponent<AudioSource>();
+        deathAudio.clip = deathSound;
+        deathAudio.loop = false;
         anim = GetComponent<Animator>();
         turretSprite = GetComponent<SpriteRenderer>();
 
@@ -90,9 +96,9 @@ public class EnemyTurret : MonoBehaviour
         anim.SetBool("FireRight", false);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "PlayerProjectile")
+        (if (collision.gameObject.tag == "PlayerProjectile")
         {
             health--;
             Destroy(collision.gameObject);
@@ -101,13 +107,15 @@ public class EnemyTurret : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-    }
+    }*/
+
     public void isDead()
     {
         health--;
         if (health <= 0)
         {
             anim.SetBool("Death", true);
+            deathAudio.Play();
         }
     }
 
