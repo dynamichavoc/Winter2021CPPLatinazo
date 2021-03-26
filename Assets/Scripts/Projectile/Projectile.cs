@@ -39,5 +39,9 @@ public class Projectile : MonoBehaviour
             collision.gameObject.GetComponent<EnemyTurret>().isDead();
             Destroy(gameObject);
         }
+        /*if (collision.gameObject.tag == "EnemyProjectile")
+        {
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+        }*/
     }
 }

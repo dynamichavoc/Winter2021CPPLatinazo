@@ -96,19 +96,6 @@ public class EnemyTurret : MonoBehaviour
         anim.SetBool("FireRight", false);
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
-    {
-        (if (collision.gameObject.tag == "PlayerProjectile")
-        {
-            health--;
-            Destroy(collision.gameObject);
-            if (health <= 0)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }*/
-
     public void isDead()
     {
         health--;
